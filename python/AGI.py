@@ -7,7 +7,7 @@ from transformers import BertTokenizer
 checkpoint = "distilbert-base-uncased"
 
 dataset = load_dataset("boolq")
-DatasetDict({train: Dataset({features: ['question', 'answer', 'passage'], num_rows: 9427}), validation: Dataset({features: ['question', 'answer', 'passage'], num_rows: 3270 })})
+datasets.DatasetDict({train: datasets.Dataset({features: ['question', 'answer', 'passage'], num_rows: 9427}), validation: datasets.Dataset({features: ['question', 'answer', 'passage'], num_rows: 3270 })})
 tokenizer = DistilBertTokenizerFast.from_pretrained(checkpoint)
 
 def tokenize_function(example):
