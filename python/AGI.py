@@ -3,6 +3,7 @@ from transformers import DistilBertTokenizerFast
 from transformers import AutoModelForSequenceClassification, DataCollatorWithPadding
 from transformers import Trainer, TrainingArguments
 from transformers import BertTokenizer
+import datasets
 
 checkpoint = "distilbert-base-uncased"
 
