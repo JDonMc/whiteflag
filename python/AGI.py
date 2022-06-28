@@ -40,3 +40,5 @@ bert = TFAutoModel.from_pretrained("/usr/adenhandasyde/GitHub/whiteflag/python/s
 print(bert)
 print(new_tokenizer)
 
+model_prediction = model(['What is the meaning of life?', 'What is my purpose here now?'])
+
