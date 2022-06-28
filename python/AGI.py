@@ -41,4 +41,5 @@ print(bert)
 print(new_tokenizer)
 
 model_prediction = model(['What is the meaning of life?', 'What is my purpose here now?'])
+print(model_prediction)
 
