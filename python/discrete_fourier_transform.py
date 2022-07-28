@@ -140,6 +140,8 @@ plt.stem(freq, abs(X), 'b', \
 plt.xlabel('Freq (Hz)')
 plt.ylabel('DFT Amplitude |X(freq)|')
 plt.show()
+plt.savefig("DFT.png")
+
 
 Y = CircularDFT(x)
 
@@ -155,6 +157,8 @@ plt.stem(freq, abs(Y), 'b', \
 plt.xlabel('Freq (Hz)')
 plt.ylabel('DFT Amplitude |X(freq)|')
 plt.show()
+plt.savefig("CDFT.png")
+
 
 
 class Wavelet:
