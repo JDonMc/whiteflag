@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 
 driver = webdriver.Chrome(ChromeDriverManager().install())
 
-
+API_KEY = 'eHwxWlhTY3b0s0l0bcjGEOln4BXxBv41'
 def get_patent_search_urls(index_url):
     response = driver.get(index_url)
     time.sleep(60)
@@ -27,32 +27,41 @@ def get_patent_title(index_url):
 	response = driver.get(index_url)
 	return driver.find_element(By.XPATH, '//h1[@id="title"]').get_attribute('innerHTML')
 
+import json
+from urllib import parse, request
+
+
+
 
 for word in english_words_set:
-	base = "https://patents.google.com/?num=100&q="
-	base += word + '&oq=' + word
-	print(word)
 	r = requests.post('https://www.babylonpolice.com/B/words/',data={'the_word_itself':word})
-	print(r.status_code)
-	print(r.text)
-	for a in set(get_patent_search_urls(base)):
-		print(a)
-		book_page = "https://patents.google.com/"
-		if len(a)<60:
-			print(book_page+a)
-			try:
-				title = get_patent_title(book_page+a)
+	print(r)
+	url = "http://api.giphy.com/v1/gifs/search"
+	params = parse.urlencode({
+	  "q": word,
+	  "api_key": API_KEY,
+	  "limit": "5"
+	})
 
-				body = "Abstract:" + get_patent_abstract(book_page+a) + " - Description: " + get_patent_text(book_page+a)
-				#print(title)
-				#print(body)
-				if body:
-					chapter_counter = 0
-					body_len = len(body)
-					for chapter in range(0, body_len, 144000):
-						chapter_counter += 1
-						r = requests.post('https://www.babylonpolice.com/B/posts/',data={'title':title[0:100] + ' Chapter '+ str(chapter_counter), "body":body[(chapter_counter-1)*144000:chapter_counter*144000]})
-						print(r.status_code)
-						print(r.text)
-			except:
-				print('empty')
+	with request.urlopen("".join((url, "?", params))) as response:
+		data = json.loads(response.read())
+		print(json.dumps(data, sort_keys=True, indent=4))
+	url = "http://upload.giphy.com/v1/gifs"
+
+	values = {
+	  "api_key": API_KEY,
+	  "username": "adenhandasyde",
+	  "source_image_url": "https://www.youtube.com/watch?v=efgU6KlzK3Q.mp4"
+	}
+
+	headers = {
+	  "Content-Type": "application/json",
+	  "Accept": "application/json",
+	}
+
+	data = json.dumps(values).encode("utf-8")
+
+	req = request.Request(url, data, headers)
+	with request.urlopen(req) as res:
+	  print(res.read().decode())
+	
