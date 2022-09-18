@@ -46,22 +46,6 @@ for word in english_words_set:
 	with request.urlopen("".join((url, "?", params))) as response:
 		data = json.loads(response.read())
 		print(json.dumps(data, sort_keys=True, indent=4))
-	url = "http://upload.giphy.com/v1/gifs"
-
-	values = {
-	  "api_key": API_KEY,
-	  "username": "adenhandasyde",
-	  "source_image_url": "https://www.youtube.com/watch?v=efgU6KlzK3Q.mp4"
-	}
-
-	headers = {
-	  "Content-Type": "application/json",
-	  "Accept": "application/json",
-	}
-
-	data = json.dumps(values).encode("utf-8")
-
-	req = request.Request(url, data, headers)
-	with request.urlopen(req) as res:
-	  print(res.read().decode())
+	
+	
 	

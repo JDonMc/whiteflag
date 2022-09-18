@@ -7,7 +7,11 @@ import time
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome(ChromeDriverManager().install())
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--incognito")
+
+driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
 
 
 def get_patent_search_urls(index_url):
